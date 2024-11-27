@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
+import "./styles/auth.scss";
 
 interface RegisterData {
   email: string;
@@ -17,11 +18,11 @@ function App() {
     password: "",
     confirmPassword: "",
   });
-
   const [loginData, setLoginData] = useState<LoginData>({
     email: "",
     password: "",
   });
+  const [actionChange, setActionChange] = useState<string>("signup");
 
   const handleRegChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,7 +31,6 @@ function App() {
       [name]: value,
     });
   };
-
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginData({
@@ -38,7 +38,6 @@ function App() {
       [name]: value,
     });
   };
-
   const handleRegSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(regData);
@@ -56,60 +55,62 @@ function App() {
       confirmPassword: "",
     });
   };
-
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(loginData);
   };
 
   return (
-    <div>
-      <h1>Auth</h1>
-      <form className="auth_form" onSubmit={handleRegSubmit}>
-        <input
-          name="email"
-          type="email"
-          placeholder="Enter your email address"
-          value={regData.email}
-          onChange={handleRegChange}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-          value={regData.password}
-          onChange={handleRegChange}
-          required
-        />
-        <input
-          name="confirmPassword"
-          type="password"
-          placeholder="Confirm you password"
-          value={regData.confirmPassword}
-          onChange={handleRegChange}
-          required
-        />
-        <button>Sing Up</button>
-      </form>
+    <div className="auth">
+      <h1 className="auth__title">Auth</h1>
 
-      <form className="auth_form" onSubmit={handleLoginSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          onChange={handleLoginChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter you password"
-          onChange={handleLoginChange}
-          required
-        />
-        <button>Sign In</button>
-      </form>
+      {actionChange === "signup" ? (
+        <form className="auth__form" onSubmit={handleRegSubmit}>
+          <input
+            name="email"
+            type="email"
+            placeholder="Enter your email address"
+            value={regData.email}
+            onChange={handleRegChange}
+            required
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            value={regData.password}
+            onChange={handleRegChange}
+            required
+          />
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm you password"
+            value={regData.confirmPassword}
+            onChange={handleRegChange}
+            required
+          />
+          <button>Sing Up</button>
+        </form>
+      ) : (
+        <form className="auth__form" onSubmit={handleLoginSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            onChange={handleLoginChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter you password"
+            onChange={handleLoginChange}
+            required
+          />
+          <button>Sign In</button>
+        </form>
+      )}
     </div>
   );
 }

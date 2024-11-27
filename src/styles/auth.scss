@@ -1,0 +1,41 @@
+.auth {
+  &__title {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px 20px;
+
+    & input {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #c0c0c0;
+
+      &:focus {
+        outline-color: #474747;
+      }
+    }
+
+    & button {
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: #474747;
+      color: #ffffff;
+      border-color: transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: #ffffff;
+        color: #474747;
+        border: 2px solid #c0c0c0;
+      }
+    }
+  }
+}

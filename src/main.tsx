@@ -1,6 +1,6 @@
-import { createContext, StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "./styles/index.css";
 import firebase from "firebase/compat/app";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/index.tsx";
