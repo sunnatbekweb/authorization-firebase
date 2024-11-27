@@ -1,23 +1,24 @@
 import { createContext, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
 import firebase from "firebase/compat/app";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/index.tsx";
 
-const FireBaseContext = createContext(null);
+// const FireBaseContext = createContext(null);
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBNtMHsN1yJxumaV7bIJG_ITBqzWrjw4ts",
-  authDomain: "authorization-7a93b.firebaseapp.com",
-  projectId: "authorization-7a93b",
-  storageBucket: "authorization-7a93b.firebasestorage.app",
-  messagingSenderId: "652933184261",
-  appId: "1:652933184261:web:bcdc6f50abbe74a5e6556c",
-  measurementId: "G-YXF2BE4X6W",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 );

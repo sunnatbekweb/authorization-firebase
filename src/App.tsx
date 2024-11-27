@@ -1,17 +1,24 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 
-// interface RegisterData {
-//   email: string;
-//   password: string;
-// }
+interface RegisterData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 interface LoginData {
   email: string;
   password: string;
 }
 function App() {
-  const [userData, setUserData] = useState<LoginData>({
+  const [userData, setUserData] = useState<RegisterData>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [loginData, setLoginData] = useState<LoginData>({
     email: "",
     password: "",
   });
@@ -35,6 +42,11 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+    setUserData({
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
 
   return (
@@ -51,6 +63,12 @@ function App() {
           name="password"
           type="password"
           value={userData.password}
+          onChange={handleRegChange}
+        />
+        <input
+          name="confirmPassword"
+          type="password"
+          value={userData.confirmPassword}
           onChange={handleRegChange}
         />
         <button>Sing Up</button>
