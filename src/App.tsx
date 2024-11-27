@@ -12,7 +12,7 @@ interface LoginData {
   password: string;
 }
 function App() {
-  const [userData, setUserData] = useState<RegisterData>({
+  const [regData, setRegData] = useState<RegisterData>({
     email: "",
     password: "",
     confirmPassword: "",
@@ -25,53 +25,90 @@ function App() {
 
   const handleRegChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserData({
-      ...userData,
+    setRegData({
+      ...regData,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
+  const handleRegSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userData);
+    console.log(regData);
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, userData.email, userData.password)
+    createUserWithEmailAndPassword(auth, regData.email, regData.password)
       .then((userCredential) => {
         console.log(userCredential.user);
       })
       .catch((error) => {
         console.log(error);
       });
-    setUserData({
+    setRegData({
       email: "",
       password: "",
       confirmPassword: "",
     });
   };
 
+  const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(loginData);
+  };
+
   return (
     <div>
       <h1>Auth</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="auth_form" onSubmit={handleRegSubmit}>
         <input
           name="email"
           type="email"
-          value={userData.email}
+          placeholder="Enter your email address"
+          value={regData.email}
           onChange={handleRegChange}
+          required
         />
         <input
           name="password"
           type="password"
-          value={userData.password}
+          placeholder="Enter your password"
+          value={regData.password}
           onChange={handleRegChange}
+          required
         />
         <input
           name="confirmPassword"
           type="password"
-          value={userData.confirmPassword}
+          placeholder="Confirm you password"
+          value={regData.confirmPassword}
           onChange={handleRegChange}
+          required
         />
         <button>Sing Up</button>
+      </form>
+
+      <form className="auth_form" onSubmit={handleLoginSubmit}>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          onChange={handleLoginChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter you password"
+          onChange={handleLoginChange}
+          required
+        />
+        <button>Sign In</button>
       </form>
     </div>
   );
