@@ -22,7 +22,7 @@ function App() {
     email: "",
     password: "",
   });
-  const [actionChange, setActionChange] = useState<string>("signup");
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const handleRegChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -64,7 +64,7 @@ function App() {
     <div className="auth">
       <h1 className="auth__title">Auth</h1>
 
-      {actionChange === "signup" ? (
+      {isLogin ? (
         <form className="auth__form" onSubmit={handleRegSubmit}>
           <input
             name="email"
@@ -111,6 +111,20 @@ function App() {
           <button>Sign In</button>
         </form>
       )}
+
+      <div className="auth__bottom">
+        {isLogin ? (
+          <div>
+            <span>Don't have an account?</span>{" "}
+            <button onClick={() => setIsLogin(false)}>SinUp</button>
+          </div>
+        ) : (
+          <div>
+            <span>Allready have an account?</span>{" "}
+            <button onClick={() => setIsLogin(true)}>SignIn</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
