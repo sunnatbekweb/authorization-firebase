@@ -117,12 +117,12 @@ function App() {
 
         <div className="auth__bottom">
           {isLogin ? (
-            <div>
+            <div className="auth__bottom--item">
               <span>Don't have an account?</span>{" "}
               <button onClick={() => setIsLogin(false)}>SinUp</button>
             </div>
           ) : (
-            <div>
+            <div className="auth__bottom--item">
               <span>Allready have an account?</span>{" "}
               <button onClick={() => setIsLogin(true)}>SignIn</button>
             </div>

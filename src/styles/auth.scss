@@ -53,6 +53,23 @@
       justify-content: center;
       align-items: center;
       column-gap: 10px;
+
+      &--item {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+
+        & button {
+          border: none;
+          border-bottom: 1px solid #474747;
+          background: transparent;
+          transition: opacity 0.3s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
     }
   }
 }
