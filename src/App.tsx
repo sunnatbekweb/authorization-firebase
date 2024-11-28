@@ -61,69 +61,73 @@ function App() {
   };
 
   return (
-    <div className="auth">
-      <h1 className="auth__title">Auth</h1>
+    <div className="container">
+      <div className="auth">
+        <h1 className="auth__title">Auth</h1>
 
-      {isLogin ? (
-        <form className="auth__form" onSubmit={handleRegSubmit}>
-          <input
-            name="email"
-            type="email"
-            placeholder="Enter your email address"
-            value={regData.email}
-            onChange={handleRegChange}
-            required
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            value={regData.password}
-            onChange={handleRegChange}
-            required
-          />
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm you password"
-            value={regData.confirmPassword}
-            onChange={handleRegChange}
-            required
-          />
-          <button>Sing Up</button>
-        </form>
-      ) : (
-        <form className="auth__form" onSubmit={handleLoginSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            onChange={handleLoginChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter you password"
-            onChange={handleLoginChange}
-            required
-          />
-          <button>Sign In</button>
-        </form>
-      )}
-
-      <div className="auth__bottom">
         {isLogin ? (
-          <div>
-            <span>Don't have an account?</span>{" "}
-            <button onClick={() => setIsLogin(false)}>SinUp</button>
-          </div>
+          <form className="auth__form" onSubmit={handleRegSubmit}>
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              value={regData.email}
+              onChange={handleRegChange}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Create a password"
+              value={regData.password}
+              onChange={handleRegChange}
+              required
+            />
+            <input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm you password"
+              value={regData.confirmPassword}
+              onChange={handleRegChange}
+              required
+            />
+            <button>Sing Up</button>
+          </form>
         ) : (
-          <div>
-            <span>Allready have an account?</span>{" "}
-            <button onClick={() => setIsLogin(true)}>SignIn</button>
-          </div>
+          <form className="auth__form" onSubmit={handleLoginSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={loginData.email}
+              onChange={handleLoginChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter you password"
+              value={loginData.password}
+              onChange={handleLoginChange}
+              required
+            />
+            <button>Sign In</button>
+          </form>
         )}
+
+        <div className="auth__bottom">
+          {isLogin ? (
+            <div>
+              <span>Don't have an account?</span>{" "}
+              <button onClick={() => setIsLogin(false)}>SinUp</button>
+            </div>
+          ) : (
+            <div>
+              <span>Allready have an account?</span>{" "}
+              <button onClick={() => setIsLogin(true)}>SignIn</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
